@@ -1,4 +1,29 @@
-// Service Worker Registration
+// Smart Navbar Hide/Show on Scroll
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > 80) {
+        // Scrolling down - hide navbar
+        if (scrollTop > lastScrollTop) {
+            navbar.classList.add('navbar-hidden');
+            navbar.classList.remove('navbar-reduced');
+        }
+        // Scrolling up - show navbar reduced
+        else {
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.add('navbar-reduced');
+        }
+    } else {
+        // At top - full navbar
+        navbar.classList.remove('navbar-hidden');
+        navbar.classList.remove('navbar-reduced');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
@@ -11,12 +36,17 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Dark Mode Toggle
-const darkModeToggle = document.querySelector('.dark-mode-toggle');
-
 function toggleDarkMode() {
     const isDarkMode = document.body.classList.toggle('dark-mode');
     localStorage.setItem('darkMode', isDarkMode);
+
+    // Close mobile menu after dark mode toggle
+    const navMenu = document.querySelector('.nav-menu');
+    const menuBurger = document.querySelector('.menu-burger');
+    if (navMenu && menuBurger) {
+        navMenu.classList.remove('active');
+        menuBurger.classList.remove('active');
+    }
 }
 
 // Restore dark mode preference on page load
@@ -25,11 +55,13 @@ window.addEventListener('load', () => {
     if (savedDarkMode) {
         document.body.classList.add('dark-mode');
     }
-});
 
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', toggleDarkMode);
-}
+    // Attach click listeners to all dark mode toggle buttons
+    const darkModeToggles = document.querySelectorAll('.dark-mode-toggle');
+    darkModeToggles.forEach(toggle => {
+        toggle.addEventListener('click', toggleDarkMode);
+    });
+});
 
 // Menu Burger Toggle
 const menuBurger = document.querySelector('.menu-burger');
@@ -68,6 +100,14 @@ window.addEventListener('load', () => {
             const lang = button.getAttribute('data-lang');
             if (typeof changeLanguage === 'function') {
                 changeLanguage(lang);
+
+                // Close mobile menu after language change
+                const navMenu = document.querySelector('.nav-menu');
+                const menuBurger = document.querySelector('.menu-burger');
+                if (navMenu && menuBurger) {
+                    navMenu.classList.remove('active');
+                    menuBurger.classList.remove('active');
+                }
             } else {
                 console.warn('changeLanguage function not found');
             }
