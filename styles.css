@@ -296,6 +296,10 @@ body.dark-mode .logo {
     align-items: center;
 }
 
+body.dark-mode .nav-menu {
+    display: flex;
+}
+
 .nav-menu a {
     text-decoration: none;
     color: var(--color-text);
@@ -332,6 +336,15 @@ body.dark-mode .logo {
     display: flex;
     gap: var(--spacing-lg);
     align-items: center;
+}
+
+/* Desktop: show nav-controls, hide nav-menu controls */
+.mobile-controls {
+    display: none;
+}
+
+.mobile-controls-separator {
+    display: none;
 }
 
 .lang-selector {
@@ -1016,6 +1029,7 @@ body.dark-mode .label {
         height: 1px;
         background: rgba(212, 175, 55, 0.15);
         margin: var(--spacing-sm) 0;
+        display: block;
     }
 
     .mobile-controls {
