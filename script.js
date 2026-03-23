@@ -11,6 +11,65 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Dark Mode Toggle
+const darkModeToggle = document.querySelector('.dark-mode-toggle');
+
+function toggleDarkMode() {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Restore dark mode preference on page load
+window.addEventListener('load', () => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (savedDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+});
+
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+}
+
+// Menu Burger Toggle
+const menuBurger = document.querySelector('.menu-burger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (menuBurger && navMenu) {
+    menuBurger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuBurger.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuBurger.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            navMenu.classList.remove('active');
+            menuBurger.classList.remove('active');
+        }
+    });
+}
+
+// Language Switching
+const langButtons = document.querySelectorAll('.lang-btn');
+
+langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang');
+        if (typeof changeLanguage === 'function') {
+            changeLanguage(lang);
+        }
+    });
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -25,35 +84,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Form handling
-const reservationForm = document.getElementById('reservationForm');
-if (reservationForm) {
-    reservationForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = {
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value,
-            date: document.getElementById('date').value,
-            location: document.getElementById('location').value,
-            destination: document.getElementById('destination').value
-        };
-
-        // Construct WhatsApp message (optional)
-        const message = `Bonjour, je souhaite réserver un taxi:\nNom: ${formData.name}\nTéléphone: ${formData.phone}\nDate/Heure: ${formData.date}\nDépart: ${formData.location}\nDestination: ${formData.destination}`;
-
-        // Show confirmation and redirect to call
-        alert('Merci pour votre demande! Un de nos chauffeurs vous contactera très rapidement.');
-
-        // Reset form
-        reservationForm.reset();
-
-        // Redirect to phone call
-        window.location.href = 'tel:0749927055';
-    });
-}
 
 // Add animation on scroll
 const observerOptions = {
@@ -70,33 +100,30 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Apply observer to service cards, zone items, and benefits
-document.querySelectorAll('.service-card, .zone-item, .benefit, .contact-form').forEach(el => {
+// Apply observer to cards
+document.querySelectorAll('.service-card, .zone-item, .benefit').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
 
-// Add active state to navigation based on scroll position
+// Add scroll effect to navbar
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.12)';
     } else {
-        navbar.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
     }
 });
 
-// Mobile menu handling
-const navMenu = document.querySelector('.nav-menu');
-const navItems = document.querySelectorAll('.nav-menu a');
-
-navItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-        navItems.forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-    });
+// Accessibility: Close burger menu with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        menuBurger.classList.remove('active');
+    }
 });
 
-console.log('Taxi Driver Courchevel - Site loaded successfully');
+console.log('Taxi Driver Courchevel - Site loaded successfully with multi-language and dark mode support');
