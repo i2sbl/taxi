@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taxidrivercourchevel.com/sitemap.xml
+
+# Respect crawl delay
+Crawl-delay: 1

@@ -1,0 +1,22 @@
+{
+  "name": "taxi-driver-courchevel",
+  "version": "1.0.0",
+  "description": "Site vitrine premium pour Taxi Driver Courchevel",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000",
+    "build": "echo 'No build needed for static site'",
+    "test": "echo 'No tests yet'",
+    "deploy": "echo 'Deploy to your hosting provider'"
+  },
+  "keywords": [
+    "taxi",
+    "courchevel",
+    "transfert",
+    "chauffeur",
+    "premium"
+  ],
+  "author": "Taxi Driver Courchevel",
+  "license": "MIT",
+  "devDependencies": {}
+}
