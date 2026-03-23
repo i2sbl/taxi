@@ -86,6 +86,11 @@ h1 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+body.dark-mode h1 {
+    color: var(--color-text);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
 h2 {
     font-size: 2.8rem;
     margin-bottom: var(--spacing-lg);
@@ -95,12 +100,20 @@ h2 {
     letter-spacing: 0.9px;
 }
 
+body.dark-mode h2 {
+    color: var(--color-text);
+}
+
 h3 {
     font-size: 1.7rem;
     margin-bottom: var(--spacing-sm);
     color: var(--color-primary);
     font-weight: 800;
     letter-spacing: 0.6px;
+}
+
+body.dark-mode h3 {
+    color: var(--color-text);
 }
 
 p {
@@ -214,6 +227,13 @@ body.dark-mode .navbar {
     font-weight: var(--font-weight-black);
     letter-spacing: 3px;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark-mode .logo {
+    background: linear-gradient(135deg, var(--color-text), var(--color-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -439,6 +459,13 @@ body.dark-mode .hero {
     animation: fadeInDown 0.8s ease-out;
 }
 
+body.dark-mode .hero h1 {
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .hero-subtitle {
     font-size: 1.5rem;
     color: var(--color-light-text);
@@ -555,6 +582,10 @@ body.dark-mode .service-card {
     letter-spacing: 0.7px;
 }
 
+body.dark-mode .service-card h3 {
+    color: var(--color-text);
+}
+
 .service-card p {
     font-size: 1.02rem;
     line-height: 1.9;
@@ -631,6 +662,10 @@ body.dark-mode .zone-item {
     letter-spacing: 0.6px;
 }
 
+body.dark-mode .zone-item h3 {
+    color: var(--color-text);
+}
+
 .zone-item p {
     font-size: 1.02rem;
     color: var(--color-light-text);
@@ -705,6 +740,10 @@ body.dark-mode .benefit:hover {
     letter-spacing: 0.7px;
 }
 
+body.dark-mode .benefit h3 {
+    color: var(--color-text);
+}
+
 .benefit p {
     color: var(--color-light-text);
     font-size: 1.02rem;
@@ -760,6 +799,13 @@ body.dark-mode .contact-content {
     letter-spacing: 1px;
 }
 
+body.dark-mode .contact-info h3 {
+    background: linear-gradient(135deg, var(--color-text), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .contact-item {
     margin-bottom: var(--spacing-lg);
     width: 100%;
@@ -773,6 +819,10 @@ body.dark-mode .contact-content {
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+}
+
+body.dark-mode .label {
+    color: var(--color-text);
 }
 
 .contact-link {
