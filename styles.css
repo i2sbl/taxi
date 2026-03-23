@@ -545,9 +545,44 @@ body.dark-mode .hero h1 {
     height: auto;
     max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.25));
     animation: slideInRight 0.8s ease-out 0.2s both;
     transition: var(--transition);
+
+    /* Premium Frame */
+    padding: 35px;
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border: 3px solid var(--color-secondary);
+    border-radius: 25px;
+    box-shadow:
+        /* Outer shadow */
+        0 30px 80px rgba(0, 0, 0, 0.25),
+        /* Inner light border */
+        inset 0 1px 3px rgba(255, 255, 255, 0.8),
+        /* Inner dark accent */
+        inset 0 -2px 8px rgba(0, 0, 0, 0.1),
+        /* Gold accent */
+        inset 0 0 40px rgba(212, 175, 55, 0.1);
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.15));
+}
+
+.vehicle-image:hover {
+    filter: drop-shadow(0 35px 70px rgba(0, 0, 0, 0.3));
+    transform: translateY(-5px);
+    border-color: #e5c158;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.35),
+        inset 0 1px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 0 60px rgba(212, 175, 55, 0.2);
+}
+
+body.dark-mode .vehicle-image {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 3px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.5),
+        inset 0 0 40px rgba(212, 175, 55, 0.15);
 }
 
 @keyframes fadeInDown {
