@@ -59,14 +59,19 @@ if (menuBurger && navMenu) {
 }
 
 // Language Switching
-const langButtons = document.querySelectorAll('.lang-btn');
+window.addEventListener('load', () => {
+    const langButtons = document.querySelectorAll('.lang-btn');
 
-langButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const lang = button.getAttribute('data-lang');
-        if (typeof changeLanguage === 'function') {
-            changeLanguage(lang);
-        }
+    langButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = button.getAttribute('data-lang');
+            if (typeof changeLanguage === 'function') {
+                changeLanguage(lang);
+            } else {
+                console.warn('changeLanguage function not found');
+            }
+        });
     });
 });
 
