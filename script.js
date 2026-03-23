@@ -1,28 +1,38 @@
-// Smart Navbar Hide/Show on Scroll
+// Smart Navbar Hide/Show on Scroll with Throttling
 let lastScrollTop = 0;
+let scrollTimeout = null;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTimeout) return;
 
-    if (scrollTop > 80) {
-        // Scrolling down - hide navbar
-        if (scrollTop > lastScrollTop) {
-            navbar.classList.add('navbar-hidden');
+    scrollTimeout = setTimeout(() => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 80) {
+            // Scrolling down - hide navbar
+            if (scrollTop > lastScrollTop) {
+                if (!navbar.classList.contains('navbar-hidden')) {
+                    navbar.classList.add('navbar-hidden');
+                    navbar.classList.remove('navbar-reduced');
+                }
+            }
+            // Scrolling up - show navbar reduced
+            else {
+                if (navbar.classList.contains('navbar-hidden')) {
+                    navbar.classList.remove('navbar-hidden');
+                    navbar.classList.add('navbar-reduced');
+                }
+            }
+        } else {
+            // At top - full navbar
+            navbar.classList.remove('navbar-hidden');
             navbar.classList.remove('navbar-reduced');
         }
-        // Scrolling up - show navbar reduced
-        else {
-            navbar.classList.remove('navbar-hidden');
-            navbar.classList.add('navbar-reduced');
-        }
-    } else {
-        // At top - full navbar
-        navbar.classList.remove('navbar-hidden');
-        navbar.classList.remove('navbar-reduced');
-    }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        scrollTimeout = null;
+    }, 10);
 });
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
