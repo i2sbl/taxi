@@ -1,18 +1,25 @@
 // Service Worker pour Taxi Driver Courchevel
-const CACHE_NAME = 'taxi-driver-v1';
+// Important: le site est servi sous /taxi/ (GitHub Pages project site)
+const CACHE_NAME = 'taxi-driver-v2';
+const APP_BASE_PATH = '/taxi/';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/script.js',
-    '/manifest.json'
+    'index.html',
+    'styles.css',
+    'script.js',
+    'i18n.js',
+    'manifest.json',
+    'van.png'
 ];
+
+function toScopedUrl(path) {
+    return new URL(path, self.registration.scope).href;
+}
 
 // Install event
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
+            .then(cache => cache.addAll(urlsToCache.map(toScopedUrl)))
             .then(() => self.skipWaiting())
     );
 });
@@ -35,6 +42,18 @@ self.addEventListener('activate', event => {
 // Fetch event - Cache first, then network
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') {
+        return;
+    }
+
+    const requestUrl = new URL(event.request.url);
+
+    // Ignore les requêtes externes
+    if (requestUrl.origin !== self.location.origin) {
+        return;
+    }
+
+    // Ne gère que les requêtes de l'application /taxi/
+    if (!requestUrl.pathname.startsWith(APP_BASE_PATH)) {
         return;
     }
 
@@ -63,8 +82,15 @@ self.addEventListener('fetch', event => {
                         return response;
                     })
                     .catch(() => {
-                        // Return offline page or cache fallback
-                        return new Response('Erreur de connexion. Veuillez vérifier votre connexion internet.');
+                        // Fallback minimal sur la home pour les navigations
+                        if (event.request.mode === 'navigate') {
+                            return caches.match(toScopedUrl('index.html'));
+                        }
+
+                        return new Response('Erreur de connexion. Veuillez vérifier votre connexion internet.', {
+                            status: 503,
+                            statusText: 'Service Unavailable'
+                        });
                     });
             })
     );
