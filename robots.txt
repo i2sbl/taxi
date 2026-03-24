@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://taxidrivercourchevel.com/sitemap.xml
+Sitemap: https://i2sbl.github.io/taxi/sitemap.xml
 
 # Respect crawl delay
 Crawl-delay: 1
