@@ -2,6 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://i2sbl.github.io/taxi/sitemap.xml
-
-# Respect crawl delay
-Crawl-delay: 1
