@@ -8,8 +8,8 @@ const translations = {
     'nav.call': 'Appeler',
 
     // Hero
-    'hero.title': 'Taxi Premium à Courchevel',
-    'hero.subtitle': 'Service de taxi haut de gamme pour vos déplacements à Courchevel',
+    'hero.title': 'Taxi Courchevel, VTC et Chauffeur Prive 24h/24',
+    'hero.subtitle': 'Taxi driver a Courchevel pour vos transferts aeroport, gare et trajets prives en station',
     'hero.call': 'Appeler maintenant',
     'hero.contact': 'Nous contacter',
 
@@ -82,8 +82,8 @@ const translations = {
     'nav.zones': 'Areas',
     'nav.contact': 'Contact Us',
     'nav.call': 'Call',
-    'hero.title': 'Premium Taxi in Courchevel',
-    'hero.subtitle': 'High-end taxi service for your transfers in Courchevel',
+    'hero.title': 'Taxi Driver Courchevel - Taxi, VTC and Private Driver',
+    'hero.subtitle': '24/7 taxi service in Courchevel for airport, station and private resort transfers',
     'hero.call': 'Call Now',
     'hero.contact': 'Contact Us',
     'services.title': 'Our Premium Services',
