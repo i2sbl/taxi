@@ -1331,6 +1331,15 @@ body.dark-mode .label {
     .contact-item {
         word-break: break-word;
     }
+
+    .contact-info h3 {
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .contact-description {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -1395,6 +1404,10 @@ body.dark-mode .label {
         width: 100%;
         justify-content: space-around;
     }
+
+    .contact-info h3 {
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 400px) {
@@ -1429,5 +1442,14 @@ body.dark-mode .label {
 
     .label {
         font-size: 0.85rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-item {
+        margin-bottom: var(--spacing-md);
     }
 }
