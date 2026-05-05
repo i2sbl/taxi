@@ -1321,6 +1321,16 @@ body.dark-mode .label {
     .contact-content {
         padding: var(--spacing-lg);
     }
+
+    .contact-link {
+        font-size: 1.4rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .contact-item {
+        word-break: break-word;
+    }
 }
 
 @media (max-width: 600px) {
@@ -1371,7 +1381,9 @@ body.dark-mode .label {
     }
 
     .contact-link {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .logo {
@@ -1407,5 +1419,15 @@ body.dark-mode .label {
 
     .hero-cta {
         gap: var(--spacing-sm);
+    }
+
+    .contact-link {
+        font-size: 1.2rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .label {
+        font-size: 0.85rem;
     }
 }
